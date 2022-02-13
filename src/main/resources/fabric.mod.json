@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "littlelogistics",
+  "version": "${version}",
+
+  "name": "Little Logistics: Fabric Edition",
+  "description": "What a cute little logistic mod thingy...",
+  "authors": [
+    "LuaX (luaxlab)",
+    "Murad Akhundov",
+    "EDToaster"
+  ],
+  "contact": {
+    "homepage": "https://luaxlab.github.io/mod/littlelogistics",
+    "sources": "https://github.com/luaxlab/ll-fabric"
+  },
+
+  "license": "GPL-3.0",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.luaxlab.shipping.common.core.ModCommon"
+    ],
+    "client": [
+      "de.luaxlab.shipping.client.ModClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
