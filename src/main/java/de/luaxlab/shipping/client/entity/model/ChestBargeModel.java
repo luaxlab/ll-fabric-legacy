@@ -6,6 +6,8 @@ package de.luaxlab.shipping.client.entity.model;// Made with Blockbench 4.1.4
 import de.luaxlab.shipping.common.core.ModCommon;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.CreeperEntityRenderer;
+import net.minecraft.client.render.entity.model.CreeperEntityModel;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;

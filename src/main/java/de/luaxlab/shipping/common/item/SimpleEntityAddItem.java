@@ -1,35 +1,37 @@
 package de.luaxlab.shipping.common.item;
 
-import de.luaxlab.shipping.common.core.ModCommon;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.BoatItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
-public abstract class AbstractEntityAddItem extends Item {
+public class SimpleEntityAddItem<T extends Entity> extends Item {
 
     private static final Predicate<Entity> RIDERS = EntityPredicates.EXCEPT_SPECTATOR.and(Entity::collides);
+    private final EntityProvider<T> provider;
 
 
-    public AbstractEntityAddItem(Settings settings) {
+    public SimpleEntityAddItem(Settings settings, EntityProvider<T> provider) {
         super(settings);
+        this.provider = provider;
     }
 
     /* Copied from BoatItem, but altered to fit our needs */
@@ -53,7 +55,7 @@ public abstract class AbstractEntityAddItem extends Item {
             }
         }
         if (((HitResult)hitResult).getType() == HitResult.Type.BLOCK) {
-            Entity entity = getEntity(world, hitResult.getPos());
+            Entity entity = provider.get(world, hitResult.getPos());
             entity.setYaw(user.getYaw());
             if (!world.isSpaceEmpty(entity, entity.getBoundingBox())) {
                 return TypedActionResult.fail(itemStack);
@@ -71,5 +73,10 @@ public abstract class AbstractEntityAddItem extends Item {
         return TypedActionResult.pass(itemStack);
     }
 
-    protected abstract Entity getEntity(World world, Vec3d position);
+    @FunctionalInterface
+    public interface EntityProvider<T extends Entity>
+    {
+        @NotNull
+        T get(World world, Vec3d position);
+    }
 }

@@ -1,6 +1,7 @@
 package de.luaxlab.shipping.common.core;
 
 import de.luaxlab.shipping.common.config.ShippingConfig;
+import de.luaxlab.shipping.common.container.FishingBargeContainer;
 import de.luaxlab.shipping.common.container.SteamTugContainer;
 import de.luaxlab.shipping.common.entity.SpringableEntity;
 import de.luaxlab.shipping.common.entity.accessor.SteamTugDataAccessor;
@@ -66,6 +67,10 @@ public class ModCommon implements ModInitializer {
 
 	public static final ScreenHandlerType<SteamTugContainer> CONTAINER_STEAM_TUG = ScreenHandlerRegistry.registerExtended(identifier("steam_tug"),
 			(syncId, inventory, buf) -> new SteamTugContainer(syncId, new SteamTugDataAccessor(makeIntArray(buf)), inventory));
+
+	public static final ScreenHandlerType<FishingBargeContainer> CONTAINER_FISHING_BARGE = ScreenHandlerRegistry.registerExtended(identifier("fishing_barge"),
+			(syncId, inventory, buf) -> new FishingBargeContainer(syncId, inventory.player.world, buf.readInt(), inventory, inventory.player) );
+
 
 	@Override
 	public void onInitialize() {

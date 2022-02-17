@@ -1,9 +1,7 @@
 package de.luaxlab.shipping.common.core;
 
-import de.luaxlab.shipping.common.item.ChestBargeItem;
-import de.luaxlab.shipping.common.item.SpringItem;
-import de.luaxlab.shipping.common.item.SteamTugItem;
-import de.luaxlab.shipping.common.item.TugRouteItem;
+import de.luaxlab.shipping.common.entity.vehicle.barge.FishingBargeEntity;
+import de.luaxlab.shipping.common.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -29,7 +27,7 @@ public class ModItems {
     /* Items: Spawn Eggs */
     public static final Item STEAM_TUG = defferedRegister(identifier("tug"), new SteamTugItem(DEFAULT_ITEM_SETTINGS));
     public static final Item CHEST_BARGE = defferedRegister(identifier("barge"), new ChestBargeItem(DEFAULT_ITEM_SETTINGS));
-
+    public static final Item FISHING_BARGE = defferedRegister(identifier("fishing_barge"), new SimpleEntityAddItem<FishingBargeEntity>(DEFAULT_ITEM_SETTINGS, FishingBargeEntity::new));
     /* Code */
 
     static <T extends Item> T defferedRegister(Identifier identifier, T item)

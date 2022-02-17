@@ -3,10 +3,13 @@ package de.luaxlab.shipping.client;
 import de.luaxlab.shipping.client.core.ClientEventHandlerImpl;
 import de.luaxlab.shipping.client.entity.model.ChainModel;
 import de.luaxlab.shipping.client.entity.model.ChestBargeModel;
+import de.luaxlab.shipping.client.entity.model.FishingBargeModel;
 import de.luaxlab.shipping.client.entity.model.SteamTugModel;
 import de.luaxlab.shipping.client.entity.render.ChestBargeRenderer;
 import de.luaxlab.shipping.client.entity.render.DummyEntityRenderer;
+import de.luaxlab.shipping.client.entity.render.FishingBargeRenderer;
 import de.luaxlab.shipping.client.entity.render.SteamTugRenderer;
+import de.luaxlab.shipping.client.screen.FishingBargeScreen;
 import de.luaxlab.shipping.client.screen.SteamTugScreen;
 import de.luaxlab.shipping.common.core.ModCommon;
 import de.luaxlab.shipping.common.core.ModEntities;
@@ -27,15 +30,18 @@ public class ModClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.STEAM_TUG, SteamTugRenderer::new);
         EntityRendererRegistry.register(ModEntities.DUMMY_TUG_HITBOX, DummyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHEST_BARGE, ChestBargeRenderer::new);
+        EntityRendererRegistry.register(ModEntities.FISHING_BARGE, FishingBargeRenderer::new);
         EntityRendererRegistry.register(ModEntities.SPRING, DummyEntityRenderer::new);
 
         //EntityModelLayerRegistry
         EntityModelLayerRegistry.registerModelLayer(ChainModel.LAYER_LOCATION, ChainModel::createBodyLayer);
         EntityModelLayerRegistry.registerModelLayer(SteamTugModel.LAYER_LOCATION, SteamTugModel::createBodyLayer);
         EntityModelLayerRegistry.registerModelLayer(ChestBargeModel.LAYER_LOCATION, ChestBargeModel::createBodyLayer);
+        EntityModelLayerRegistry.registerModelLayer(FishingBargeModel.LAYER_LOCATION, FishingBargeModel::createBodyLayer);
 
         //Screens
         ScreenRegistry.register(ModCommon.CONTAINER_STEAM_TUG, SteamTugScreen::new);
+        ScreenRegistry.register(ModCommon.CONTAINER_FISHING_BARGE, FishingBargeScreen::new);
 
         //Event registration
         ClientTextureStitchEvent.PRE.register(ClientEventHandlerImpl.INSTANCE);

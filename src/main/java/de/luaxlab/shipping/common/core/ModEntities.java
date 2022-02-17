@@ -2,8 +2,9 @@ package de.luaxlab.shipping.common.core;
 
 import de.luaxlab.shipping.common.entity.SpringEntity;
 import de.luaxlab.shipping.common.entity.vehicle.barge.ChestBargeEntity;
-import de.luaxlab.shipping.common.entity.vehicle.tug.SteamTugEntity;
+import de.luaxlab.shipping.common.entity.vehicle.barge.FishingBargeEntity;
 import de.luaxlab.shipping.common.entity.vehicle.tug.TugDummyHitboxEntity;
+import de.luaxlab.shipping.common.entity.vehicle.tug.SteamTugEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
@@ -23,11 +24,15 @@ public class ModEntities {
     );
 
     /* Barges */
-
     public static final EntityType<ChestBargeEntity> CHEST_BARGE = Registry.register(
             Registry.ENTITY_TYPE,
             identifier("barge"),
             FabricEntityTypeBuilder.create(SpawnGroup.WATER_CREATURE, (EntityType.EntityFactory<ChestBargeEntity>) ChestBargeEntity::new).dimensions(EntityDimensions.fixed(0.6f, 0.9f)).build()
+    );
+    public static final EntityType<FishingBargeEntity> FISHING_BARGE = Registry.register(
+            Registry.ENTITY_TYPE,
+            identifier("fishing_barge"),
+            FabricEntityTypeBuilder.create(SpawnGroup.WATER_CREATURE, (EntityType.EntityFactory<FishingBargeEntity>) FishingBargeEntity::new).dimensions(EntityDimensions.fixed(0.6f, 0.9f)).build()
     );
     
     /* Misc */
@@ -51,6 +56,8 @@ public class ModEntities {
         /* easy-registry */
         FabricDefaultAttributeRegistry.register(STEAM_TUG, SteamTugEntity.setCustomAttributes());
         FabricDefaultAttributeRegistry.register(CHEST_BARGE, ChestBargeEntity.setCustomAttributes());
+        FabricDefaultAttributeRegistry.register(FISHING_BARGE, FishingBargeEntity.setCustomAttributes());
+
 
         /* space for compelx registry */
     }
